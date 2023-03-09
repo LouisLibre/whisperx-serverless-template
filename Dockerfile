@@ -4,7 +4,7 @@ FROM nvidia/cuda:11.7.1-runtime-ubuntu22.04
 WORKDIR /
 
 # Install git
-RUN apt-get update && apt-get install -y git ffmpeg nvidia-driver-515 nvidia-dkms-515
+RUN apt-get update && apt-get install -y git ffmpeg
 
 # Install python packages
 RUN pip3 install --upgrade pip
