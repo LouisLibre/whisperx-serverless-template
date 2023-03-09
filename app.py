@@ -8,14 +8,14 @@ from io import BytesIO
 # Load your model to GPU as a global variable here using the variable name "model"
 def init():
     global model
-    device = "cpu"
+    device = "cuda"
     model = whisperx.load_model("large", device)
 
 # Inference is ran for every server call
 # Reference your preloaded global model variable here.
 def inference(model_inputs:dict) -> dict:
     global model
-    device = "cpu"
+    device = "cuda"
     # Parse out your arguments
     mp3BytesString = model_inputs.get('mp3BytesString', None)
     if mp3BytesString == None:
