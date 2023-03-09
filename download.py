@@ -7,7 +7,7 @@ import whisperx
 import torch
 
 def download_model():
-    device = "cuda"
+    device = "cpu"
     model = whisperx.load_model("large", device)
 
 if __name__ == "__main__":
