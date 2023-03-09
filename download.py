@@ -3,10 +3,12 @@
 
 # In this example: A Huggingface BERT model
 
-import whisper
+import whisperx
 import torch
 
 def download_model():
-    model = whisper.load_model("base")
+    device = "cuda"
+    model = whisperx.load_model("large", device)
+
 if __name__ == "__main__":
     download_model()
