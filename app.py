@@ -34,5 +34,5 @@ def inference(model_inputs:dict) -> dict:
     # align whisper output
     result_aligned = whisperx.align(result["segments"], model_a, metadata, audio_file_name, DEVICE)
     os.remove(audio_file_name)
-    return result_aligned
+    return result_aligned["word_segments"]
 
