@@ -6,9 +6,10 @@
 import whisperx
 import torch
 
+DEVICE = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+
 def download_model():
-    device = "cuda"
-    model = whisperx.load_model("large", device)
+    model = whisperx.load_model("large", DEVICE)
 
 if __name__ == "__main__":
     download_model()
