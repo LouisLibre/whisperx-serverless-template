@@ -26,7 +26,7 @@ def extract_segments(segments_list):
 def inference(model_inputs:dict) -> dict:
     global model
     # Parse out your arguments
-    language = model.inputs.get("language", None)
+    language = model_inputs.get("language", None)
     mp3BytesString = model_inputs.get('mp3BytesString', None)
     if mp3BytesString == None:
         return {'message': "No input provided"}
