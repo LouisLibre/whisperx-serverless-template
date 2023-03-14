@@ -10,6 +10,7 @@ DEVICE = torch.device("cuda") if torch.cuda.is_available() else torch.device("cp
 def init():
     global model
     model = whisperx.load_model("large", DEVICE)
+    print(f"CUDA available? {torch.cuda.is_available()}, device: {DEVICE}")
 
 def extract_segments(segments_list):
     resp = []
