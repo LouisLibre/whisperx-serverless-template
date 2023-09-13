@@ -18,6 +18,6 @@ with open(f'test.mp3','rb') as file:
 mp3 = base64.b64encode(mp3bytes.getvalue()).decode("ISO-8859-1")
 model_payload = {"language": "en", "mp3BytesString":mp3}
 
-result, meta = my_model.call("/", inputs)
+result, meta = my_model.call("/", model_payload)
 
 print(result)
