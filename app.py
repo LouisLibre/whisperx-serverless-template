@@ -26,8 +26,9 @@ def extract_segments(segments_list):
 @app.init
 def init():
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+    print(f"HELLO; CUDA available? {torch.cuda.is_available()}, device: {device}")
     model = whisperx.load_model("large", device)
-    print(f"CUDA available? {torch.cuda.is_available()}, device: {device}")
+    print(f"GOODBYE;")
 
     context = {
         "model": model
