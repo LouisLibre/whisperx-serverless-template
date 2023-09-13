@@ -7,11 +7,10 @@ from potassium import Potassium, Request, Response
 import torch
 import whisperx
 import os
-import subprocess
 import base64
 from io import BytesIO
 
-app = Potassium("server")
+app = Potassium("my_app")
 
 def extract_segments(segments_list):
     resp = []
@@ -26,7 +25,7 @@ def extract_segments(segments_list):
 # @app.init runs at startup, and loads models into the app's context
 @app.init
 def init():
-    device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+    device = 0 if torch.cuda.is_available() else -1
     model = whisperx.load_model("large", device)
     print(f"CUDA available? {torch.cuda.is_available()}, device: {device}")
 
@@ -41,7 +40,7 @@ def init():
 def handler(context: dict, request: Request) -> Response:
     prompt = request.json.get("prompt")
     model = context.get("model")
-    device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+    device = 0 if torch.cuda.is_available() else -1
 
     try:
         model_inputs = response.json.loads(request.json)
