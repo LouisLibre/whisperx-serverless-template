@@ -12,16 +12,6 @@ from io import BytesIO
 
 app = Potassium("my_app")
 
-def extract_segments(segments_list):
-    resp = []
-    for seg in segments_list:
-        resp.append({
-            'start': seg['start'],
-            'end': seg['end'],
-            'text': seg['text']
-        })
-    return resp
-
 # @app.init runs at startup, and loads models into the app's context
 @app.init
 def init():
@@ -40,6 +30,17 @@ def init():
 # @app.handler runs for every call
 @app.handler()
 def handler(context: dict, request: Request) -> Response:
+
+    def extract_segments(segments_list):
+        resp = []
+        for seg in segments_list:
+            resp.append({
+                'start': seg['start'],
+                'end': seg['end'],
+                'text': seg['text']
+            })
+        return resp
+    
     prompt = request.json.get("prompt")
     model = context.get("model")
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
